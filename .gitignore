@@ -1,0 +1,10 @@
+straight/build*
+straight/repos*
+recentf*
+projectile-bookmarks.eld
+tramp
+elpa*
+transient*
+auto-save-list*
+*~
+
