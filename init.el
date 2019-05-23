@@ -64,6 +64,11 @@
   (setq enable-recursive-minibuffers t))
 (use-package counsel
   :straight t)
+(use-package  which-key
+  :straight t
+  :config
+  (which-key-mode)
+  (which-key-setup-side-window-right))
 ;; (use-package projectile
 ;;   :straight t
 ;;   :bind-keymap
@@ -163,7 +168,3 @@
  ;; If there is more than one, they won't work right.
  )
 
-(use-package  which-key
-  :straight t
-  :config
-  (which-key-mode))
