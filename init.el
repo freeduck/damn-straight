@@ -176,3 +176,11 @@
  ;; If there is more than one, they won't work right.
  )
 
+
+(use-package ace-window
+  :straight t
+  :config
+  (global-set-key (kbd "s-w") 'ace-window)
+  (global-set-key [remap other-window] 'ace-window))
+
+
