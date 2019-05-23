@@ -55,6 +55,8 @@
 
 (use-package org
   :straight org-plus-contrib)
+
+;; Completion
 (use-package ivy
   :straight t
   :diminish ivy-mode
@@ -62,13 +64,29 @@
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t))
+
 (use-package counsel
   :straight t)
+
+(use-package counsel-projectile
+  :straight t
+  :after projectile
+  :config
+  (counsel-projectile-mode))
+
+(use-package company
+  :straight t
+  :config
+  (setq company-tooltip-flip-when-above t)
+  (global-company-mode))
+
 (use-package  which-key
   :straight t
   :config
   (which-key-mode)
   (which-key-setup-side-window-right))
+;; end completion
+
 ;; (use-package projectile
 ;;   :straight t
 ;;   :bind-keymap
@@ -79,33 +97,23 @@
 ;;   (projectile-mode +1))
 
 (use-package projectile
-	  :straight t
-	  :init
-	  (setq projectile-completion-system 'ivy)
-	  :config
-	  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-	  (projectile-mode +1))
-
-(use-package counsel-projectile
   :straight t
+  :after ivy
+  :init
+  (setq projectile-completion-system 'ivy)
   :config
-  (counsel-projectile-mode))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
+
+(use-package magit
+  :straight t
+  :bind (("C-x g" . magit-status)))
 
 ;; (use-package godot-gdscript
 ;;   :straight t)
 
-(use-package company
-  :straight t
-  :config
-  (setq company-tooltip-flip-when-above t)
-  (global-company-mode))
-
 (use-package markdown-mode
   :straight t)
-
-(use-package magit
-	  :straight t
-	  :bind (("C-x g" . magit-status)))
 
 (use-package terraform-mode
   :straight t)
@@ -119,7 +127,7 @@
   (add-hook 'lisp-interaction-mode-hook #'paredit-mode)
   (add-hook 'ielm-mode-hook #'paredit-mode)
   (add-hook 'lisp-mode-hook #'paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode))
+  (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode))
 
 (use-package crux
   :straight t
