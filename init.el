@@ -68,7 +68,7 @@
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t))
 
-
+;; https://github.com/bbatsov/emacs.d/blob/master/init.el
 (use-package counsel
   :straight t
   :config
