@@ -53,6 +53,9 @@
   (load bootstrap-file nil 'nomessage))
 (straight-use-package 'use-package)
 
+(use-package epkg
+  :straight t)
+
 (use-package org
   :straight org-plus-contrib)
 
@@ -79,6 +82,9 @@
   :config
   (setq company-tooltip-flip-when-above t)
   (global-company-mode))
+
+(use-package ggtags
+  :straight t)
 
 (use-package  which-key
   :straight t
