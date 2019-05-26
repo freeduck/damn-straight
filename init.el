@@ -190,3 +190,14 @@
   (global-set-key [remap other-window] 'ace-window))
 
 
+(use-package geiser
+  :straight t
+  :init
+  (add-hook 'scheme-mode-hook 'geiser-mode)
+  :config
+  (setq geiser-default-implementation 'racket))
+
+(use-package ob-scheme
+  :straight org-plus-contrib
+  :commands (org-babel-execute:scheme
+             org-babel-expand-body:scheme))
