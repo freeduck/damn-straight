@@ -208,14 +208,9 @@
   (global-set-key [remap other-window] 'ace-window))
 
 
-(use-package geiser
-  :straight t
-  :init
-  (add-hook 'scheme-mode-hook 'geiser-mode)
-  :config
-  (setq geiser-default-implementation 'racket))
-
-(use-package ob-scheme
-  :straight org-plus-contrib
-  :commands (org-babel-execute:scheme
-             org-babel-expand-body:scheme))
+(use-package ob-racket
+  :straight (ob-racket :host github
+		       :repo "hasu/emacs-ob-racket"
+		       :branch "master")
+  :commands (org-babel-execute:racket
+             org-babel-expand-body:racket))
