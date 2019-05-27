@@ -184,6 +184,14 @@
 ;; racket
 (use-package racket-mode
   :straight t)
+
+(use-package ob-racket
+  :straight (ob-racket :host github
+		       :repo "hasu/emacs-ob-racket"
+		       :branch "master")
+  :commands (org-babel-execute:racket
+             org-babel-expand-body:racket))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -207,10 +215,3 @@
   (global-set-key (kbd "s-w") 'ace-window)
   (global-set-key [remap other-window] 'ace-window))
 
-
-(use-package ob-racket
-  :straight (ob-racket :host github
-		       :repo "hasu/emacs-ob-racket"
-		       :branch "master")
-  :commands (org-babel-execute:racket
-             org-babel-expand-body:racket))
