@@ -68,8 +68,27 @@
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t))
 
+;; https://github.com/bbatsov/emacs.d/blob/master/init.el
 (use-package counsel
-  :straight t)
+  :straight t
+  :config
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "C-s") 'swiper)
+  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+  (global-set-key (kbd "<f1> l") 'counsel-find-library)
+  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (global-set-key (kbd "C-c a") 'counsel-ag)
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+;; (use-package counsel
+;;   :straight t
+;;   :)
+;; ;; counsel-M-x
 
 (use-package counsel-projectile
   :straight t
@@ -171,6 +190,14 @@
 ;; racket
 (use-package racket-mode
   :straight t)
+
+(use-package ob-racket
+  :straight (ob-racket :host github
+		       :repo "hasu/emacs-ob-racket"
+		       :branch "master")
+  :commands (org-babel-execute:racket
+             org-babel-expand-body:racket))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -193,5 +220,4 @@
   :config
   (global-set-key (kbd "s-w") 'ace-window)
   (global-set-key [remap other-window] 'ace-window))
-
 
