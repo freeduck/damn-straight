@@ -86,6 +86,11 @@
 (use-package ggtags
   :straight t)
 
+(use-package pdf-tools
+  :straight t
+  :config
+  (pdf-loader-install))
+
 (use-package  which-key
   :straight t
   :config
