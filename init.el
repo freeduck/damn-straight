@@ -159,6 +159,9 @@
   (add-hook 'lisp-mode-hook #'paredit-mode)
   (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode))
 
+(use-package rainbow-delimiters
+  :straight t)
+
 (use-package crux
   :straight t
   :bind (("C-c o" . crux-open-with)
@@ -189,7 +192,10 @@
 	 ("C-c s" . crux-ispell-word-then-abbrev)))
 ;; racket
 (use-package racket-mode
-  :straight t)
+  :straight t
+  :config
+  (add-hook 'racket-mode-hook #'paredit-mode)
+  (add-hook 'racket-mode-hook #'rainbow-delimiters-mode))
 
 (use-package ob-racket
   :straight (ob-racket :host github
