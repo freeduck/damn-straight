@@ -143,7 +143,9 @@
 ;;   :straight t)
 
 (use-package markdown-mode
-  :straight t)
+  :straight t
+  :config
+  (add-hook 'markdown-mode-hook (lambda () (flyspell-mode 1))))
 
 (use-package terraform-mode
   :straight t)
@@ -195,7 +197,8 @@
   :straight t
   :config
   (add-hook 'racket-mode-hook #'paredit-mode)
-  (add-hook 'racket-mode-hook #'rainbow-delimiters-mode))
+  (add-hook 'racket-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'racket-mode-hook (lambda () (flyspell-prog-mode))))
 
 (use-package ob-racket
   :straight (ob-racket :host github
