@@ -200,6 +200,15 @@
   (add-hook 'racket-mode-hook #'rainbow-delimiters-mode)
   (add-hook 'racket-mode-hook (lambda () (flyspell-prog-mode))))
 
+(use-package slime
+  :straight t
+  :config
+  (setq slime-contribs '(slime-fancy slime-asdf))
+  ;; (setq inferior-lisp-program "ros -Q run")
+  )
+
+;; (load (expand-file-name "~/.roswell/helper.el"))
+
 (use-package ob-racket
   :straight (ob-racket :host github
 		       :repo "hasu/emacs-ob-racket"
