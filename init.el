@@ -203,9 +203,8 @@
 (use-package slime
   :straight t
   :config
-  (setq slime-contribs '(slime-fancy slime-asdf))
-  ;; (setq inferior-lisp-program "ros -Q run")
-  )
+  (setq slime-contribs '(slime-fancy slime-asdf)))
+;; (setq inferior-lisp-program "ros -Q run")
 
 ;; (load (expand-file-name "~/.roswell/helper.el"))
 
