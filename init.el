@@ -215,6 +215,9 @@
   :commands (org-babel-execute:racket
              org-babel-expand-body:racket))
 
+(use-package groovy-mode
+  :straight t)
+
 (use-package dockerfile-mode
   :straight t)
 
