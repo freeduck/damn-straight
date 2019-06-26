@@ -38,6 +38,8 @@
 (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "s-/") #'hippie-expand)
 
+(show-paren-mode t)
+
 ;; start straight
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -139,6 +141,9 @@
   :straight t
   :bind (("C-x g" . magit-status)))
 
+(use-package outshine
+  :straight t)
+
 ;; (use-package godot-gdscript
 ;;   :straight t)
 
@@ -198,11 +203,13 @@
   :config
   (add-hook 'racket-mode-hook #'paredit-mode)
   (add-hook 'racket-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'racket-mode-hook (lambda () (flyspell-prog-mode))))
+  (add-hook 'racket-mode-hook (lambda () (flyspell-prog-mode)))
+  (add-hook 'racket-mode-hook 'outshine-mode))
 
 (use-package slime
   :straight t
   :config
+  (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (setq slime-contribs '(slime-fancy slime-asdf))
   ;; (setq inferior-lisp-program "ros -Q run")
   )
