@@ -7,7 +7,7 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (require 'iso-transl)
-
+(setq visible-bell 1)
 ;; https://www.gnu.org/software/emacs/manual/html_node/tramp/Remote-programs.html
 ;; Remote PATH keeps stuff from .profile
 (require 'tramp)
