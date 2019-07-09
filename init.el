@@ -141,6 +141,9 @@
   :straight t
   :bind (("C-x g" . magit-status)))
 
+(use-package git-timemachine
+  :straight t)
+
 (use-package outshine
   :straight t)
 
