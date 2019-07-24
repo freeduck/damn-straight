@@ -1,9 +1,3 @@
-(use-package chocolate-theme
-  :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
-             :branch "master")
-  :config
-  (load-theme 'chocolate t))
-;; (load-theme 'deeper-blue)
 ;; https://www.emacswiki.org/emacs/DeadKeys
 ;; <dead_tilde> is undefined
 
@@ -62,6 +56,13 @@
 
 (use-package epkg
   :straight t)
+
+(use-package chocolate-theme
+  :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
+             :branch "master")
+  :config
+  (load-theme 'chocolate t))
+;; (load-theme 'deeper-blue)
 
 (use-package org
   :straight org-plus-contrib)
