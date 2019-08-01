@@ -1,6 +1,6 @@
 ;; https://www.emacswiki.org/emacs/DeadKeys
 ;; <dead_tilde> is undefined
-
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -38,7 +38,7 @@
 (global-set-key (kbd "s-/") #'hippie-expand)
 
 (show-paren-mode t)
-
+(setq straight-process-buffer "*stright-output*")
 ;; start straight
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -218,7 +218,9 @@
 (use-package slime
   :straight t
   :config
-  (load (expand-file-name "~/quicklisp/slime-helper.el"))
+  (when (file-exists-p (expand-file-name "~/quicklisp/slime-helper.el"))
+    (message "Loading SLIME helper")
+    (load (expand-file-name "~/quicklisp/slime-helper.el")))
   (setq slime-contribs '(slime-fancy slime-asdf))
   ;; (setq inferior-lisp-program "ros -Q run")
   )
