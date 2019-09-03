@@ -62,6 +62,8 @@
 ;;              :branch "master")
 ;;   :config
 ;;   (load-theme 'chocolate t))
+(use-package cyberpunk-2019-theme
+  :straight t)
 (load-theme 'deeper-blue)
 
 (use-package org
@@ -215,24 +217,26 @@
   (add-hook 'racket-mode-hook (lambda () (flyspell-prog-mode)))
   (add-hook 'racket-mode-hook 'outshine-mode))
 
-(use-package slime
-  :straight t
-  :config
-  (when (file-exists-p (expand-file-name "~/quicklisp/slime-helper.el"))
-    (message "Loading SLIME helper")
-    (load (expand-file-name "~/quicklisp/slime-helper.el")))
-  (setq slime-contribs '(slime-fancy slime-asdf))
-  ;; (setq inferior-lisp-program "ros -Q run")
-  )
-
-;; (load (expand-file-name "~/.roswell/helper.el"))
-
 (use-package ob-racket
   :straight (ob-racket :host github
 		       :repo "hasu/emacs-ob-racket"
 		       :branch "master")
   :commands (org-babel-execute:racket
              org-babel-expand-body:racket))
+
+;; (use-package slime
+;;   :straight t
+;;   :config
+;;   (when (file-exists-p (expand-file-name "~/quicklisp/slime-helper.el"))
+;;     (message "Loading SLIME helper")
+;;     (load (expand-file-name "~/quicklisp/slime-helper.el")))
+;;   (setq slime-contribs '(slime-fancy slime-asdf))
+;;   ;; (setq inferior-lisp-program "ros -Q run")
+;;   )
+(load (expand-file-name "~/.roswell/helper.el"))
+(setq inferior-lisp-program "ros -Q run")
+
+;; (load (expand-file-name "~/.roswell/helper.el"))
 
 (use-package groovy-mode
   :straight t)
@@ -245,6 +249,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("ab9456aaeab81ba46a815c00930345ada223e1e7c7ab839659b382b52437b9ea" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "155a5de9192c2f6d53efcc9c554892a0d87d87f99ad8cc14b330f4f4be204445" default)))
  '(safe-local-variable-values
    (quote
     ((dockerfile-image-name . "terratest")
@@ -264,3 +271,5 @@
   (global-set-key (kbd "s-w") 'ace-window)
   (global-set-key [remap other-window] 'ace-window))
 
+(use-package docker-tramp
+  :straight t)
