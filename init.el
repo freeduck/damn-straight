@@ -224,6 +224,27 @@
   :commands (org-babel-execute:racket
              org-babel-expand-body:racket))
 
+;; golang
+(use-package go-mode
+  :mode "\\.go\\'"
+  :straight t)
+
+(use-package company-go
+  :straight t
+  :after (go-mode company))
+
+(use-package go-projectile
+  :straight t
+  :after (go-mode projectile))
+
+(use-package go-eldoc
+  :straight t
+  :after (go-mode))
+
+(use-package gotest
+  :straight t
+  :after (go-mode))
+
 ;; (use-package slime
 ;;   :straight t
 ;;   :config
