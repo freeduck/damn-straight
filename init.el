@@ -37,6 +37,8 @@
 (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "s-/") #'hippie-expand)
 
+(set-default 'truncate-lines t)
+
 (show-paren-mode t)
 (setq straight-process-buffer "*stright-output*")
 ;; start straight
@@ -275,7 +277,9 @@
     ("ab9456aaeab81ba46a815c00930345ada223e1e7c7ab839659b382b52437b9ea" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "155a5de9192c2f6d53efcc9c554892a0d87d87f99ad8cc14b330f4f4be204445" default)))
  '(safe-local-variable-values
    (quote
-    ((dockerfile-image-name . "terratest")
+    ((checkdoc-package-keywords-flag)
+     (bug-reference-bug-regexp . "#\\(?2:[[:digit:]]+\\)")
+     (dockerfile-image-name . "terratest")
      (org-confirm-babel-evaluate)
      (org-use-property-inheritance . t)))))
 (custom-set-faces
@@ -293,4 +297,7 @@
   (global-set-key [remap other-window] 'ace-window))
 
 (use-package docker-tramp
+  :straight t)
+
+(use-package geiser
   :straight t)
