@@ -6,40 +6,14 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (require 'iso-transl)
-(setq visible-bell 1)
 ;; https://www.gnu.org/software/emacs/manual/html_node/tramp/Remote-programs.html
 ;; Remote PATH keeps stuff from .profile
 (require 'tramp)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
 
-;; https://github.com/bbatsov/emacs.d/blob/master/init.el
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(blink-cursor-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
-(global-auto-revert-mode t)
-(setq inhibit-startup-screen t)
-(global-auto-revert-mode t)
-
-;; hippie expand is dabbrev expand on steroids
-(setq hippie-expand-try-functions-list '(try-expand-dabbrev
-                                         try-expand-dabbrev-all-buffers
-                                         try-expand-dabbrev-from-kill
-                                         try-complete-file-name-partially
-                                         try-complete-file-name
-                                         try-expand-all-abbrevs
-                                         try-expand-list
-                                         try-expand-line
-                                         try-complete-lisp-symbol-partially
-                                         try-complete-lisp-symbol))
-
-;; use hippie-expand instead of dabbrev
-(global-set-key (kbd "M-/") #'hippie-expand)
-(global-set-key (kbd "s-/") #'hippie-expand)
-
 (set-default 'truncate-lines t)
 
-(show-paren-mode t)
 (setq straight-process-buffer "*stright-output*")
 ;; start straight
 (defvar bootstrap-version)
@@ -55,21 +29,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 (straight-use-package 'use-package)
-
-(use-package epkg
-  :straight t)
-
-;; (use-package chocolate-theme
-;;   :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
-;;              :branch "master")
-;;   :config
-;;   (load-theme 'chocolate t))
-(use-package cyberpunk-2019-theme
-  :straight t)
-(load-theme 'deeper-blue)
-
-(use-package org
-  :straight org-plus-contrib)
 
 ;; Completion
 (use-package ivy
@@ -114,13 +73,27 @@
   (setq company-tooltip-flip-when-above t)
   (global-company-mode))
 
-(use-package ggtags
+(use-package better-defaults
   :straight t)
 
-(use-package pdf-tools
-  :straight t
-  :config
-  (pdf-loader-install))
+
+(use-package epkg
+  :straight t)
+
+;; (use-package chocolate-theme
+;;   :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
+;;              :branch "master")
+;;   :config
+;;   (load-theme 'chocolate t))
+(use-package cyberpunk-2019-theme
+  :straight t)
+(load-theme 'deeper-blue)
+
+(use-package org
+  :straight org-plus-contrib)
+
+(use-package ggtags
+  :straight t)
 
 (use-package  which-key
   :straight t
