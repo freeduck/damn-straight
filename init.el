@@ -220,20 +220,6 @@
   :straight t
   :after (go-mode))
 
-;; (use-package slime
-;;   :straight t
-;;   :config
-;;   (when (file-exists-p (expand-file-name "~/quicklisp/slime-helper.el"))
-;;     (message "Loading SLIME helper")
-;;     (load (expand-file-name "~/quicklisp/slime-helper.el")))
-;;   (setq slime-contribs '(slime-fancy slime-asdf))
-;;   ;; (setq inferior-lisp-program "ros -Q run")
-;;   )
-(load (expand-file-name "~/.roswell/helper.el"))
-(setq inferior-lisp-program "ros -Q run")
-
-;; (load (expand-file-name "~/.roswell/helper.el"))
-
 (use-package groovy-mode
   :straight t)
 
