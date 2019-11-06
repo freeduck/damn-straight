@@ -228,5 +228,3 @@
 (use-package docker-tramp
   :straight t)
 
-(use-package geiser
-  :straight t)
