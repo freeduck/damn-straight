@@ -75,7 +75,8 @@
   (global-company-mode))
 
 (use-package better-defaults
-  :straight t)
+  :straight t
+  :after ivy)
 
 
 (use-package epkg
