@@ -1,5 +1,6 @@
 ;; https://www.emacswiki.org/emacs/DeadKeys
 ;; <dead_tilde> is undefined
+(setq custom-file "~/.emacs-custom.el")
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -225,29 +226,6 @@
 
 (use-package dockerfile-mode
   :straight t)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("ab9456aaeab81ba46a815c00930345ada223e1e7c7ab839659b382b52437b9ea" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "155a5de9192c2f6d53efcc9c554892a0d87d87f99ad8cc14b330f4f4be204445" default)))
- '(safe-local-variable-values
-   (quote
-    ((checkdoc-package-keywords-flag)
-     (bug-reference-bug-regexp . "#\\(?2:[[:digit:]]+\\)")
-     (dockerfile-image-name . "terratest")
-     (org-confirm-babel-evaluate)
-     (org-use-property-inheritance . t)))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 
 (use-package ace-window
   :straight t
