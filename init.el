@@ -1,45 +1,20 @@
 ;; https://www.emacswiki.org/emacs/DeadKeys
 ;; <dead_tilde> is undefined
+(setq custom-file "~/.emacs-custom.el")
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (require 'iso-transl)
-(setq visible-bell 1)
 ;; https://www.gnu.org/software/emacs/manual/html_node/tramp/Remote-programs.html
 ;; Remote PATH keeps stuff from .profile
 (require 'tramp)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
 
-;; https://github.com/bbatsov/emacs.d/blob/master/init.el
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(blink-cursor-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
-(global-auto-revert-mode t)
-(setq inhibit-startup-screen t)
-(global-auto-revert-mode t)
-
-;; hippie expand is dabbrev expand on steroids
-(setq hippie-expand-try-functions-list '(try-expand-dabbrev
-                                         try-expand-dabbrev-all-buffers
-                                         try-expand-dabbrev-from-kill
-                                         try-complete-file-name-partially
-                                         try-complete-file-name
-                                         try-expand-all-abbrevs
-                                         try-expand-list
-                                         try-expand-line
-                                         try-complete-lisp-symbol-partially
-                                         try-complete-lisp-symbol))
-
-;; use hippie-expand instead of dabbrev
-(global-set-key (kbd "M-/") #'hippie-expand)
-(global-set-key (kbd "s-/") #'hippie-expand)
-
 (set-default 'truncate-lines t)
 
-(show-paren-mode t)
 (setq straight-process-buffer "*stright-output*")
 ;; start straight
 (defvar bootstrap-version)
@@ -55,21 +30,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 (straight-use-package 'use-package)
-
-(use-package epkg
-  :straight t)
-
-;; (use-package chocolate-theme
-;;   :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
-;;              :branch "master")
-;;   :config
-;;   (load-theme 'chocolate t))
-(use-package cyberpunk-2019-theme
-  :straight t)
-(load-theme 'deeper-blue)
-
-(use-package org
-  :straight org-plus-contrib)
 
 ;; Completion
 (use-package ivy
@@ -114,13 +74,27 @@
   (setq company-tooltip-flip-when-above t)
   (global-company-mode))
 
-(use-package ggtags
+(use-package better-defaults
   :straight t)
 
-(use-package pdf-tools
-  :straight t
-  :config
-  (pdf-loader-install))
+
+(use-package epkg
+  :straight t)
+
+;; (use-package chocolate-theme
+;;   :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
+;;              :branch "master")
+;;   :config
+;;   (load-theme 'chocolate t))
+(use-package cyberpunk-2019-theme
+  :straight t)
+(load-theme 'deeper-blue)
+
+(use-package org
+  :straight org-plus-contrib)
+
+(use-package ggtags
+  :straight t)
 
 (use-package  which-key
   :straight t
@@ -247,48 +221,11 @@
   :straight t
   :after (go-mode))
 
-;; (use-package slime
-;;   :straight t
-;;   :config
-;;   (when (file-exists-p (expand-file-name "~/quicklisp/slime-helper.el"))
-;;     (message "Loading SLIME helper")
-;;     (load (expand-file-name "~/quicklisp/slime-helper.el")))
-;;   (setq slime-contribs '(slime-fancy slime-asdf))
-;;   ;; (setq inferior-lisp-program "ros -Q run")
-;;   )
-(load (expand-file-name "~/.roswell/helper.el"))
-(setq inferior-lisp-program "ros -Q run")
-
-;; (load (expand-file-name "~/.roswell/helper.el"))
-
 (use-package groovy-mode
   :straight t)
 
 (use-package dockerfile-mode
   :straight t)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("ab9456aaeab81ba46a815c00930345ada223e1e7c7ab839659b382b52437b9ea" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "155a5de9192c2f6d53efcc9c554892a0d87d87f99ad8cc14b330f4f4be204445" default)))
- '(safe-local-variable-values
-   (quote
-    ((checkdoc-package-keywords-flag)
-     (bug-reference-bug-regexp . "#\\(?2:[[:digit:]]+\\)")
-     (dockerfile-image-name . "terratest")
-     (org-confirm-babel-evaluate)
-     (org-use-property-inheritance . t)))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 
 (use-package ace-window
   :straight t
