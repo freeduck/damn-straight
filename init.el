@@ -228,3 +228,9 @@
 (use-package docker-tramp
   :straight t)
 
+(use-package slime
+  :straight t
+  :commands (slime)
+  :init
+  (setq inferior-lisp-program "sbcl")
+  (setq slime-contribs '(slime-fancy)))
