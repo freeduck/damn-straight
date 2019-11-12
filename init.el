@@ -18,20 +18,60 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (set-default 'truncate-lines t)
+;; Better defaults
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev
+                                         try-expand-dabbrev-all-buffers
+                                         try-expand-dabbrev-from-kill
+                                         try-complete-file-name-partially
+                                         try-complete-file-name
+                                         try-expand-all-abbrevs
+                                         try-expand-list
+                                         try-expand-line
+                                         try-complete-lisp-symbol-partially
+                                         try-complete-lisp-symbol))
+(progn
+  (unless (eq window-system 'ns)
+    (menu-bar-mode -1))
+  (when (fboundp 'tool-bar-mode)
+    (tool-bar-mode -1))
+  (when (fboundp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
+  (when (fboundp 'horizontal-scroll-bar-mode)
+    (horizontal-scroll-bar-mode -1))
 
-(setq straight-process-buffer "*stright-output*")
+  (autoload 'zap-up-to-char "misc"
+    "Kill up to, but not including ARGth occurrence of CHAR." t)
+
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'forward)
+
+  (require 'saveplace)
+  (setq-default save-place t)
+
+  (global-set-key (kbd "M-/") 'hippie-expand)
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+  (global-set-key (kbd "M-z") 'zap-up-to-char)
+
+  (show-paren-mode 1)
+  (setq-default indent-tabs-mode nil)
+  (setq save-interprogram-paste-before-kill t
+        apropos-do-all t
+        mouse-yank-at-point t
+        require-final-newline t
+        visible-bell t
+        load-prefer-newer t
+        ediff-window-setup-function 'ediff-setup-windows-plain
+        save-place-file (concat user-emacs-directory "places")
+        backup-directory-alist `(("." . ,(concat user-emacs-directory
+                                                 "backups")))))
+
+
 ;; start straight
+(setq straight-process-buffer "*stright-output*")
 (load (concat (file-name-as-directory user-emacs-directory)
 		 (file-name-as-directory "upstream")
 		 "bootstrap.el"))
 (straight-use-package 'use-package)
-
-(use-package bookmark+)
-(use-package dired+)
-(use-package icicles
-  :straight t
-  :config
-  (icy-mode 1))
 
 ;; Completion
 (use-package ivy
@@ -45,7 +85,6 @@
 ;; https://github.com/bbatsov/emacs.d/blob/master/init.el
 (use-package counsel
   :straight t
-  :after better-defaults
   :config
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
@@ -65,21 +104,25 @@
 ;;   :)
 ;; ;; counsel-M-x
 
+(use-package bookmark+
+  :after ivy)
+(use-package dired+
+  :after ivy)
+
+
 (use-package counsel-projectile
   :straight t
   :after projectile
   :config
   (counsel-projectile-mode))
 
+
+
 (use-package company
   :straight t
   :config
   (setq company-tooltip-flip-when-above t)
   (global-company-mode))
-
-(use-package better-defaults
-  :straight t
-  :after ivy)
 
 
 (use-package epkg
