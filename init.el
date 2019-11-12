@@ -2,6 +2,10 @@
 ;; <dead_tilde> is undefined
 (setq custom-file "~/.emacs-custom.el")
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path "~/.emacs.d/lisp/bookmarkplus")
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -22,6 +26,13 @@
 		 "bootstrap.el"))
 (straight-use-package 'use-package)
 
+(use-package bookmark+)
+(use-package dired+)
+(use-package icicles
+  :straight t
+  :config
+  (icy-mode 1))
+
 ;; Completion
 (use-package ivy
   :straight t
@@ -34,6 +45,7 @@
 ;; https://github.com/bbatsov/emacs.d/blob/master/init.el
 (use-package counsel
   :straight t
+  :after better-defaults
   :config
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
@@ -212,6 +224,17 @@
 (use-package gotest
   :straight t
   :after (go-mode))
+;; clojure
+
+
+(use-package cider
+  :straight t
+  :mode ("\\.clj\\'" "\\.cljs\\'"))
+
+(use-package clojure-mode
+  :straight t
+  :mode ("\\.clj\\'" "\\.cljs\\'"))
+
 
 (use-package groovy-mode
   :straight t)
