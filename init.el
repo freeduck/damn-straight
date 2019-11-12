@@ -104,10 +104,10 @@
 ;;   :)
 ;; ;; counsel-M-x
 
-(use-package bookmark+
-  :after ivy)
-(use-package dired+
-  :after ivy)
+(use-package bookmark+)
+(use-package dired+)
+(use-package icicles
+  :straight t)
 
 
 (use-package counsel-projectile
