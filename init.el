@@ -231,6 +231,12 @@
          ([(control shift return)] . crux-smart-open-line-above)
          ([remap kill-whole-line] . crux-kill-whole-line)
 	 ("C-c s" . crux-ispell-word-then-abbrev)))
+;; Python
+(use-package elpy
+  :straight t
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
 ;; racket
 (use-package racket-mode
   :straight t
