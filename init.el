@@ -183,7 +183,8 @@
 ;; (setq outline-minor-mode-prefix "\M-#")
 (use-package outshine
   :straight t
-  :after org
+  :init
+  (defvar outline-minor-mode-prefix "\M-#")
   :config
   (add-hook 'prog-mode-hook #'outshine-mode))
 
