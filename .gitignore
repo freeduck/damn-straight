@@ -8,5 +8,5 @@ transient*
 auto-save-list*
 *~
 epkgs
-
-
+bookmarks
+filesets-cache.el
