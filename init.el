@@ -18,6 +18,11 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (set-default 'truncate-lines t)
+
+(blink-cursor-mode -1)
+(setq inhibit-startup-screen t)
+(global-auto-revert-mode t)
+
 ;; Better defaults
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
