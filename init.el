@@ -175,8 +175,12 @@
 (use-package git-timemachine
   :straight t)
 
+;; (setq outline-minor-mode-prefix "\M-#")
 (use-package outshine
-  :straight t)
+  :straight t
+  :after org
+  :config
+  (add-hook 'prog-mode-hook #'outshine-mode))
 
 ;; (use-package godot-gdscript
 ;;   :straight t)
@@ -192,8 +196,10 @@
 ;; https://github.com/bbatsov/emacs.d/blob/master/init.el
 (use-package paredit
   :straight t
+  ;; :hook prog-mode
   :config
-  (add-hook 'emacs-lisp-mode-hook #'paredit-mode)
+  ;; (add-hook 'emacs-lisp-mode-hook #'paredit-mode)
+  (add-hook 'prog-mode-hook #'paredit-mode)
   ;; enable in the *scratch* buffer
   (add-hook 'lisp-interaction-mode-hook #'paredit-mode)
   (add-hook 'ielm-mode-hook #'paredit-mode)
@@ -201,7 +207,9 @@
   (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode))
 
 (use-package rainbow-delimiters
-  :straight t)
+  :straight t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package crux
   :straight t
@@ -235,10 +243,8 @@
 (use-package racket-mode
   :straight t
   :config
-  (add-hook 'racket-mode-hook #'paredit-mode)
-  (add-hook 'racket-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'racket-mode-hook (lambda () (flyspell-prog-mode)))
-  (add-hook 'racket-mode-hook 'outshine-mode))
+  ; (add-hook 'racket-mode-hook #'paredit-mode)
+  (add-hook 'racket-mode-hook (lambda () (flyspell-prog-mode))))
 
 (use-package ob-racket
   :straight (ob-racket :host github
