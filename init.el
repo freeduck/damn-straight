@@ -1,6 +1,7 @@
 ;; https://www.emacswiki.org/emacs/DeadKeys
 ;; <dead_tilde> is undefined
 (setq custom-file "~/.emacs-custom.el")
+(load custom-file)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -16,14 +17,16 @@
 (require 'tramp)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
 
+
+
+;; Better defaults
+(filesets-init)
 (fset 'yes-or-no-p 'y-or-n-p)
 (set-default 'truncate-lines t)
 
 (blink-cursor-mode -1)
 (setq inhibit-startup-screen t)
 (global-auto-revert-mode t)
-
-;; Better defaults
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
                                          try-expand-dabbrev-from-kill
@@ -318,3 +321,4 @@
   :init
   (setq inferior-lisp-program "sbcl")
   (setq slime-contribs '(slime-fancy)))
+
