@@ -114,9 +114,6 @@
 
 (use-package bookmark+)
 (use-package dired+)
-(use-package icicles
-  :straight t)
-
 
 (use-package counsel-projectile
   :straight t
