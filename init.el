@@ -17,8 +17,7 @@
 (require 'tramp)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
 
-
-
+(server-start)
 ;; Better defaults
 (filesets-init)
 (fset 'yes-or-no-p 'y-or-n-p)
