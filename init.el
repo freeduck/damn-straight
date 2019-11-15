@@ -24,6 +24,7 @@
 (setq recentf-max-saved-items 25)
 (run-at-time nil (* 5 60) 'recentf-save-list)
 (filesets-init)
+(run-at-time nil (* 5 60) 'filesets-save-config)
 (fset 'yes-or-no-p 'y-or-n-p)
 (set-default 'truncate-lines t)
 
