@@ -19,6 +19,10 @@
 
 (server-start)
 ;; Better defaults
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
+(run-at-time nil (* 5 60) 'recentf-save-list)
 (filesets-init)
 (fset 'yes-or-no-p 'y-or-n-p)
 (set-default 'truncate-lines t)
