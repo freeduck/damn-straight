@@ -1,0 +1,6 @@
+* Damn Straight
+Damn straight is my person emacs config using [[https://github.com/raxod502/straight.el]].
+** Install
+#+BEGIN_SRC sh
+git clone --recurse-submodules https://github.com/freeduck/damn-straight.git
+#+END_SRC
