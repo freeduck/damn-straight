@@ -143,8 +143,11 @@
 ;;   :config
 ;;   (load-theme 'chocolate t))
 (use-package cyberpunk-2019-theme
+  :straight t
+  :defer t)
+
+(use-package zenburn-theme
   :straight t)
-(load-theme 'deeper-blue)
 
 (use-package org
   :straight org-plus-contrib)
