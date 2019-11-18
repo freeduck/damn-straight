@@ -1,7 +1,8 @@
 ;; https://www.emacswiki.org/emacs/DeadKeys
 ;; <dead_tilde> is undefined
 (setq custom-file "~/.emacs-custom.el")
-(load custom-file)
+(when (file-exists-p custom-file)
+  (load custom-file))
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
