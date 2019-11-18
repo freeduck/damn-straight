@@ -151,8 +151,8 @@
   :straight t)
 
 (use-package org
-  :straight org-plus-contrib
   :config
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c l") 'org-store-link))
