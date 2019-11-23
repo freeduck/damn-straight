@@ -1,5 +1,4 @@
-;; https://www.emacswiki.org/emacs/DeadKeys
-;; <dead_tilde> is undefined
+;; * Damn straight
 (setq custom-file "~/.emacs-custom.el")
 (when (file-exists-p custom-file)
   (load custom-file))
@@ -12,6 +11,9 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
+;; ** Deadkeys
+;; https://www.emacswiki.org/emacs/DeadKeys
+;; <dead_tilde> is undefined
 (require 'iso-transl)
 ;; https://www.gnu.org/software/emacs/manual/html_node/tramp/Remote-programs.html
 ;; Remote PATH keeps stuff from .profile
@@ -331,3 +333,25 @@
   (setq inferior-lisp-program "sbcl")
   (setq slime-contribs '(slime-fancy)))
 
+;; ** Webmode
+;; source: https://github.com/glynnforrest/emacs.d/blob/master/site-lisp/setup-web-mode.el
+(use-package web-mode
+  :straight t
+  :mode
+  (
+   ".twig$"
+   ".html?$"
+   ".hbs$"
+   ".vue$"
+   ".blade.php$"
+   )
+  :config
+  (setq
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-enable-auto-closing t
+   web-mode-enable-auto-opening t
+   web-mode-enable-auto-pairing t
+   web-mode-enable-auto-indentation t
+))
