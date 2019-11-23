@@ -15,13 +15,14 @@
 ;; https://www.emacswiki.org/emacs/DeadKeys
 ;; <dead_tilde> is undefined
 (require 'iso-transl)
+;; ** Tramp
 ;; https://www.gnu.org/software/emacs/manual/html_node/tramp/Remote-programs.html
 ;; Remote PATH keeps stuff from .profile
 (require 'tramp)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
 
 (server-start)
-;; Better defaults
+;; ** Better defaults
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
@@ -81,119 +82,21 @@
                                                  "backups")))))
 
 
-;; start straight
+;; ** start straight
 (setq straight-process-buffer "*stright-output*")
 (load (concat (file-name-as-directory user-emacs-directory)
 		 (file-name-as-directory "upstream")
 		 "bootstrap.el"))
 (straight-use-package 'use-package)
 
-;; Completion
-(use-package ivy
-  :straight t
-  :diminish ivy-mode
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t))
-
-;; https://github.com/bbatsov/emacs.d/blob/master/init.el
-(use-package counsel
-  :straight t
-  :config
-  (global-set-key (kbd "M-x") 'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (global-set-key (kbd "C-s") 'swiper)
-  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-  (global-set-key (kbd "<f1> l") 'counsel-find-library)
-  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-  (global-set-key (kbd "C-c g") 'counsel-git)
-  (global-set-key (kbd "C-c j") 'counsel-git-grep)
-  ;; (global-set-key (kbd "C-c a") 'counsel-ag)
-  (global-set-key (kbd "C-x l") 'counsel-locate)
-  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
-;; (use-package counsel
-;;   :straight t
-;;   :)
-;; ;; counsel-M-x
-
-(use-package bookmark+)
-(use-package dired+)
-
-(use-package counsel-projectile
-  :straight t
-  :after projectile
-  :config
-  (counsel-projectile-mode))
-
-
-
-(use-package company
-  :straight t
-  :config
-  (setq company-tooltip-flip-when-above t)
-  (global-company-mode))
-
-
 (use-package epkg
   :straight t)
-
-;; (use-package chocolate-theme
-;;   :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
-;;              :branch "master")
-;;   :config
-;;   (load-theme 'chocolate t))
-(use-package cyberpunk-2019-theme
-  :straight t
-  :defer t)
-
-(use-package zenburn-theme
-  :straight t)
-
-(use-package org
-  :config
-  (setq org-default-notes-file (concat org-directory "/notes.org"))
-  (global-set-key (kbd "C-c c") 'org-capture)
-  (global-set-key (kbd "C-c a") 'org-agenda)
-  (global-set-key (kbd "C-c l") 'org-store-link))
-
-(use-package ggtags
-  :straight t)
-
+;; ** Enhancements
 (use-package  which-key
   :straight t
   :config
   (which-key-mode)
   (which-key-setup-side-window-right))
-;; end completion
-
-;; (use-package projectile
-;;   :straight t
-;;   :bind-keymap
-;;   ("C-c p" . projectile-command-map)
-;;   :init
-;;   (setq projectile-completion-system 'ivy)
-;;   :config
-;;   (projectile-mode +1))
-
-(use-package projectile
-  :straight t
-  :after ivy
-  :init
-  (setq projectile-completion-system 'ivy)
-  :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1))
-
-(use-package magit
-  :straight t
-  :bind (("C-x g" . magit-status)))
-
-(use-package git-timemachine
-  :straight t)
-
 ;; (setq outline-minor-mode-prefix "\M-#")
 (use-package outshine
   :straight t
@@ -201,18 +104,6 @@
   (defvar outline-minor-mode-prefix "\M-#")
   :config
   (add-hook 'prog-mode-hook #'outshine-mode))
-
-;; (use-package godot-gdscript
-;;   :straight t)
-
-(use-package markdown-mode
-  :straight t
-  :config
-  (add-hook 'markdown-mode-hook (lambda () (flyspell-mode 1))))
-
-(use-package terraform-mode
-  :straight t)
-
 ;; https://github.com/bbatsov/emacs.d/blob/master/init.el
 (use-package paredit
   :straight t
@@ -259,13 +150,122 @@
          ([(control shift return)] . crux-smart-open-line-above)
          ([remap kill-whole-line] . crux-kill-whole-line)
 	 ("C-c s" . crux-ispell-word-then-abbrev)))
-;; Python
+(use-package ace-window
+  :straight t
+  :config
+  (global-set-key (kbd "s-w") 'ace-window)
+  (global-set-key [remap other-window] 'ace-window))
+;; ** Completion
+(use-package ivy
+  :straight t
+  :diminish ivy-mode
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t))
+
+;; https://github.com/bbatsov/emacs.d/blob/master/init.el
+(use-package counsel
+  :straight t
+  :config
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "C-s") 'swiper)
+  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+  (global-set-key (kbd "<f1> l") 'counsel-find-library)
+  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  ;; (global-set-key (kbd "C-c a") 'counsel-ag)
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+;; (use-package counsel
+;;   :straight t
+;;   :)
+;; ;; counsel-M-x
+
+(use-package counsel-projectile
+  :straight t
+  :after projectile
+  :config
+  (counsel-projectile-mode))
+
+
+
+(use-package company
+  :straight t
+  :config
+  (setq company-tooltip-flip-when-above t)
+  (global-company-mode))
+
+(use-package ggtags
+  :straight t)
+
+;; ** Project management
+(use-package bookmark+)
+(use-package dired+)
+(use-package projectile
+  :straight t
+  :after ivy
+  :init
+  (setq projectile-completion-system 'ivy)
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
+(use-package magit
+  :straight t
+  :bind (("C-x g" . magit-status)))
+
+(use-package git-timemachine
+  :straight t)
+;; ** Theming
+;; (use-package chocolate-theme
+;;   :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
+;;              :branch "master")
+;;   :config
+;;   (load-theme 'chocolate t))
+(use-package cyberpunk-2019-theme
+  :straight t
+  :defer t)
+
+(use-package zenburn-theme
+  :straight t)
+
+;; ** Orgmode
+(use-package org
+  :config
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c l") 'org-store-link))
+
+;; (use-package godot-gdscript
+;;   :straight t)
+;; ** Markdown
+(use-package markdown-mode
+  :straight t
+  :config
+  (add-hook 'markdown-mode-hook (lambda () (flyspell-mode 1))))
+;; ** Terraform
+(use-package terraform-mode
+  :straight t)
+;; ** Python
 (use-package elpy
   :straight t
   :defer t
   :init
   (advice-add 'python-mode :before 'elpy-enable))
-;; racket
+;; ** LISPs
+;; *** CL
+(use-package slime
+  :straight t
+  :commands (slime)
+  :init
+  (setq inferior-lisp-program "sbcl")
+  (setq slime-contribs '(slime-fancy)))
+;; *** racket
 (use-package racket-mode
   :straight t
   :config
@@ -279,7 +279,7 @@
   :commands (org-babel-execute:racket
              org-babel-expand-body:racket))
 
-;; golang
+;; ** golang
 (use-package go-mode
   :mode "\\.go\\'"
   :straight t)
@@ -299,7 +299,7 @@
 (use-package gotest
   :straight t
   :after (go-mode))
-;; clojure
+;; ** clojure
 
 
 (use-package cider
@@ -310,28 +310,16 @@
   :straight t
   :mode ("\\.clj\\'" "\\.cljs\\'"))
 
-
+;; ** groovy
 (use-package groovy-mode
   :straight t)
 
+;; ** docker
 (use-package dockerfile-mode
   :straight t)
 
-(use-package ace-window
-  :straight t
-  :config
-  (global-set-key (kbd "s-w") 'ace-window)
-  (global-set-key [remap other-window] 'ace-window))
-
 (use-package docker-tramp
   :straight t)
-
-(use-package slime
-  :straight t
-  :commands (slime)
-  :init
-  (setq inferior-lisp-program "sbcl")
-  (setq slime-contribs '(slime-fancy)))
 
 ;; ** Webmode
 ;; source: https://github.com/glynnforrest/emacs.d/blob/master/site-lisp/setup-web-mode.el
