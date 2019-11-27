@@ -130,9 +130,13 @@
 
 (use-package company
   :straight t
+  :hook
+  (after-init . global-company-mode)
+  :bind (:map company-active-map
+     ("C-n" . company-select-next-or-abort)
+     ("C-p" . company-select-previous-or-abort))
   :config
-  (setq company-tooltip-flip-when-above t)
-  (global-company-mode))
+  (setq company-tooltip-flip-when-above t))
 
 
 (use-package epkg
