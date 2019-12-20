@@ -79,7 +79,9 @@
         ediff-window-setup-function 'ediff-setup-windows-plain
         save-place-file (concat user-emacs-directory "places")
         backup-directory-alist `(("." . ,(concat user-emacs-directory
-                                                 "backups")))))
+                                                 "backups"))))
+
+  (global-set-key (kbd "C-x t c a") 'tramp-cleanup-all-connections))
 
 
 ;; ** start straight
@@ -234,8 +236,13 @@
   :straight t
   :defer t)
 
+(use-package solarized-theme
+  :straight t
+  :defer t)
+
 (use-package zenburn-theme
-  :straight t)
+  :straight t
+  :defer t)
 
 ;; ** Orgmode
 (use-package org
