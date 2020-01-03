@@ -227,11 +227,10 @@
 (use-package git-timemachine
   :straight t)
 ;; ** Theming
-;; (use-package chocolate-theme
-;;   :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
-;;              :branch "master")
-;;   :config
-;;   (load-theme 'chocolate t))
+(use-package chocolate-theme
+  :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
+                   :branch "master")
+  :defer t)
 (use-package cyberpunk-2019-theme
   :straight t
   :defer t)
