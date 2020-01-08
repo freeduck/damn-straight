@@ -235,6 +235,9 @@
   :straight t
   :defer t)
 
+(use-package cyberpunk-theme
+  :straight t)
+
 (use-package solarized-theme
   :straight t
   :defer t)
