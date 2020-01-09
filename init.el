@@ -81,7 +81,9 @@
         ediff-window-setup-function 'ediff-setup-windows-plain
         save-place-file (concat user-emacs-directory "places")
         backup-directory-alist `(("." . ,(concat user-emacs-directory
-                                                 "backups")))))
+                                                 "backups"))))
+
+  (global-set-key (kbd "C-x t c a") 'tramp-cleanup-all-connections))
 
 
 ;; ** start straight
@@ -258,17 +260,24 @@
 (use-package git-timemachine
   :straight t)
 ;; ** Theming
-;; (use-package chocolate-theme
-;;   :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
-;;              :branch "master")
-;;   :config
-;;   (load-theme 'chocolate t))
+(use-package chocolate-theme
+  :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
+                   :branch "master")
+  :defer t)
 (use-package cyberpunk-2019-theme
   :straight t
   :defer t)
 
-(use-package zenburn-theme
+(use-package cyberpunk-theme
   :straight t)
+
+(use-package solarized-theme
+  :straight t
+  :defer t)
+
+(use-package zenburn-theme
+  :straight t
+  :defer t)
 
 ;; ** Orgmode
 (use-package org
