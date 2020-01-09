@@ -27,7 +27,9 @@
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
 (run-at-time nil (* 5 60) 'recentf-save-list)
+;; ** Filesets
 (filesets-init)
+(global-set-key (kbd "C-c m f e") 'filesets-edit)
 (run-at-time nil (* 5 60) 'filesets-save-config)
 (fset 'yes-or-no-p 'y-or-n-p)
 (set-default 'truncate-lines t)
@@ -105,17 +107,48 @@
   :config
   (add-hook 'prog-mode-hook #'outshine-mode))
 ;; https://github.com/bbatsov/emacs.d/blob/master/init.el
-(use-package paredit
+;; (use-package paredit
+;;   :straight t
+;;   ;; :hook prog-mode
+;;   :config
+;;   ;; (add-hook 'emacs-lisp-mode-hook #'paredit-mode)
+;;   (add-hook 'prog-mode-hook #'paredit-mode)
+;;   ;; enable in the *scratch* buffer
+;;   (add-hook 'lisp-interaction-mode-hook #'paredit-mode)
+;;   (add-hook 'ielm-mode-hook #'paredit-mode)
+;;   (add-hook 'lisp-mode-hook #'paredit-mode)
+;;   (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode))
+(use-package smartparens
   :straight t
-  ;; :hook prog-mode
+  :init
+  (progn
+    (use-package smartparens-config)
+    (use-package smartparens-ruby)
+    (use-package smartparens-html)
+    (smartparens-global-mode 1)
+    (show-smartparens-global-mode 1))
   :config
-  ;; (add-hook 'emacs-lisp-mode-hook #'paredit-mode)
-  (add-hook 'prog-mode-hook #'paredit-mode)
-  ;; enable in the *scratch* buffer
-  (add-hook 'lisp-interaction-mode-hook #'paredit-mode)
-  (add-hook 'ielm-mode-hook #'paredit-mode)
-  (add-hook 'lisp-mode-hook #'paredit-mode)
-  (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode))
+  (progn
+    (setq smartparens-strict-mode t)
+    (sp-local-pair 'emacs-lisp-mode "`" nil :when '(sp-in-string-p)))
+  :bind
+  (("C-M-k" . sp-kill-sexp-with-a-twist-of-lime)
+   ("C-M-f" . sp-forward-sexp)
+   ("C-M-b" . sp-backward-sexp)
+   ("C-M-n" . sp-up-sexp)
+   ("C-M-d" . sp-down-sexp)
+   ("C-M-u" . sp-backward-up-sexp)
+   ("C-M-p" . sp-backward-down-sexp)
+   ("C-M-w" . sp-copy-sexp)
+   ("M-s" . sp-splice-sexp)
+   ("M-r" . sp-splice-sexp-killing-around)
+   ("C-)" . sp-forward-slurp-sexp)
+   ("C-}" . sp-forward-barf-sexp)
+   ("C-(" . sp-backward-slurp-sexp)
+   ("C-{" . sp-backward-barf-sexp)
+   ("M-S" . sp-split-sexp)
+   ("M-J" . sp-join-sexp)
+   ("C-M-t" . sp-transpose-sexp)))
 
 (use-package rainbow-delimiters
   :straight t
@@ -260,7 +293,10 @@
   :straight t
   :defer t
   :init
-  (advice-add 'python-mode :before 'elpy-enable))
+  (advice-add 'python-mode :before 'elpy-enable)
+  :config
+  (setq python-shell-interpreter "python3"
+      python-shell-interpreter-args "-i"))
 ;; ** LISPs
 ;; *** CL
 (use-package slime
