@@ -264,6 +264,7 @@
   :straight (:host github :repo "SavchenkoValeriy/emacs-chocolate-theme"
                    :branch "master")
   :defer t)
+
 (use-package cyberpunk-2019-theme
   :straight t
   :defer t)
