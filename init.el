@@ -250,6 +250,20 @@
 (use-package org
   :config
   (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (setq org-agenda-files (list "~/org/gtd/inbox.org"
+                               "~/org/gtd/gtd.org"
+                               "~/org/gtd/tickler.org"
+                               org-default-notes-file))
+  (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+  (setq org-refile-targets '(("~/org/gtd/gtd.org" :maxlevel . 3)
+                           ("~/org/gtd/someday.org" :level . 1)
+                           ("~/org/gtd/tickler.org" :maxlevel . 2)))
+  (setq org-capture-templates '(("t" "Todo [inbox]" entry
+                               (file+headline "~/org/gtd/inbox.org" "Tasks")
+                               "* TODO %i%?")
+                              ("T" "Tickler" entry
+                               (file+headline "~/org/gtd/tickler.org" "Tickler")
+                               "* %i%? \n %U")))
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c l") 'org-store-link))
