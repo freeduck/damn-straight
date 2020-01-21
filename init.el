@@ -283,6 +283,7 @@
 ;; ** Orgmode
 (use-package org
   :config
+  (require 'org-id)
   (setq org-default-notes-file (concat org-directory "/notes.org"))
   (setq org-agenda-files (list "~/org/gtd/inbox.org"
                                "~/org/gtd/gtd.org"
@@ -298,6 +299,7 @@
                               ("T" "Tickler" entry
                                (file+headline "~/org/gtd/tickler.org" "Tickler")
                                "* %i%? \n %U")))
+  (setq org-id-link-to-org-use-id t)
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c l") 'org-store-link))
