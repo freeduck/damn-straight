@@ -60,9 +60,6 @@
   (autoload 'zap-up-to-char "misc"
     "Kill up to, but not including ARGth occurrence of CHAR." t)
 
-  (require 'uniquify)
-  (setq uniquify-buffer-name-style 'forward)
-
   (require 'saveplace)
   (setq-default save-place t)
 
@@ -92,6 +89,14 @@
 		 (file-name-as-directory "upstream")
 		 "bootstrap.el"))
 (straight-use-package 'use-package)
+
+(use-package uniquify
+  :config
+  (setq uniquify-buffer-name-style 'forward)
+  (setq uniquify-separator "/")
+  (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
+  (setq uniquify-ignore-buffers-re "^\\*")
+  (setq uniquify-min-dir-content 2))
 
 (use-package epkg
   :straight t)
@@ -270,15 +275,15 @@
   :defer t)
 
 (use-package cyberpunk-theme
-  :straight t)
+  :straight t
+  :defer t)
 
 (use-package solarized-theme
   :straight t
   :defer t)
 
 (use-package zenburn-theme
-  :straight t
-  :defer t)
+  :straight t)
 
 ;; ** Orgmode
 (use-package org
