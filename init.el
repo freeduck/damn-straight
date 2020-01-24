@@ -289,7 +289,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-one t))
+  (load-theme 'doom-acario-dark t))
 
 ;; ** Orgmode
 (use-package org
