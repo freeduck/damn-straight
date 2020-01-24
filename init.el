@@ -60,9 +60,6 @@
   (autoload 'zap-up-to-char "misc"
     "Kill up to, but not including ARGth occurrence of CHAR." t)
 
-  (require 'uniquify)
-  (setq uniquify-buffer-name-style 'forward)
-
   (require 'saveplace)
   (setq-default save-place t)
 
@@ -92,6 +89,14 @@
 		 (file-name-as-directory "upstream")
 		 "bootstrap.el"))
 (straight-use-package 'use-package)
+
+(use-package uniquify
+  :config
+  (setq uniquify-buffer-name-style 'forward)
+  (setq uniquify-separator "/")
+  (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
+  (setq uniquify-ignore-buffers-re "^\\*")
+  (setq uniquify-min-dir-content 2))
 
 (use-package epkg
   :straight t)
@@ -270,7 +275,8 @@
   :defer t)
 
 (use-package cyberpunk-theme
-  :straight t)
+  :straight t
+  :defer t)
 
 (use-package solarized-theme
   :straight t
@@ -280,9 +286,15 @@
   :straight t
   :defer t)
 
+(use-package doom-themes
+  :straight t
+  :config
+  (load-theme 'doom-one t))
+
 ;; ** Orgmode
 (use-package org
   :config
+  (require 'org-id)
   (setq org-default-notes-file (concat org-directory "/notes.org"))
   (setq org-agenda-files (list "~/org/gtd/inbox.org"
                                "~/org/gtd/gtd.org"
@@ -298,6 +310,7 @@
                               ("T" "Tickler" entry
                                (file+headline "~/org/gtd/tickler.org" "Tickler")
                                "* %i%? \n %U")))
+  (setq org-id-link-to-org-use-id t)
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c l") 'org-store-link))
