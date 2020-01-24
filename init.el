@@ -283,7 +283,13 @@
   :defer t)
 
 (use-package zenburn-theme
-  :straight t)
+  :straight t
+  :defer t)
+
+(use-package doom-themes
+  :straight t
+  :config
+  (load-theme 'doom-one t))
 
 ;; ** Orgmode
 (use-package org
