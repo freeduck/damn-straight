@@ -325,6 +325,10 @@
   :straight t
   :config
   (add-hook 'markdown-mode-hook (lambda () (flyspell-mode 1))))
+(use-package yaml-mode
+  :straight t
+  :mode (("\\.yaml$" . yaml-mode)
+         ("\\.yml$" . yaml-mode)))
 ;; ** Terraform
 (use-package terraform-mode
   :straight t)
